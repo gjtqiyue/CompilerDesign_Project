@@ -1,0 +1,74 @@
+# Left-Truncatable Prime check
+
+# read a number
+read(x);
+# read number of digit
+read(num);
+
+var temp : int = x;
+var mod : int = 0;
+var d : int = 0;
+var isLeftPrime : bool = True;
+
+# check if the number has 0 in it
+while (temp != 0) {
+    d = temp / 10;
+    mod = temp - 10 * d;
+    if (temp1 == 0){
+        #if a digit is 0, print false
+        isLeftPrime = False;
+    }
+    temp = temp / 10;
+}
+
+if (isLeftPrime != False) {
+    temp = x;
+    while (digit >= 0) {
+        # calculate divider = pow(10, digit)
+        var divider : int = 1;
+        var t : int = digit;
+        while (t > 0) {
+            divider = divider * 10;
+            t = t - 1;
+        }
+
+        # calculate mod
+        d = temp / divider;
+        mod = temp - d * divider;
+
+        # check if the truncated number is prime
+        var isPrime : bool = True;
+        if (mod <= 1) {
+            isPrime = False;
+            print("False");
+        }
+        else {
+            # try from 2 to mod-1
+            var count = 2;
+            while (count < mod) {
+                d = temp / count;
+                mod = temp - count * d;
+
+                if (mod == 0) {
+                    # it is not a prime number
+                    isPrime = False;
+                }
+                count = count + 1;
+            }
+        }
+
+        if (isPrime == False) {
+            isLeftPrime = False;
+        }
+
+        digit = digit - 1;
+    }
+}
+
+#check if isLeftPrime is false
+if (isLeftPrime == False) {
+    print("False");
+}
+else {
+    print("True");
+}

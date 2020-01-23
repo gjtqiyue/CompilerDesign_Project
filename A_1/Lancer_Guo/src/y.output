@@ -1,0 +1,1612 @@
+Grammar
+
+    0 $accept: program $end
+
+    1 program: tCOMMENT program
+    2        | if program
+    3        | while program
+    4        | dcl program
+    5        | stmts program
+    6        | %empty
+
+    7 dcl: tVAR tIDENTIFIER tASSIGN exp tSEMICOLON
+    8    | tVAR tIDENTIFIER tCOLON type tASSIGN exp tSEMICOLON
+
+    9 type: tINT
+   10     | tFLOAT
+   11     | tSTRING
+   12     | tBOOL
+
+   13 if: tIF tLEFTPAREN exp tRIGHTPAREN tLEFTCURLY program tRIGHTCURLY else
+
+   14 else: tELSE tLEFTCURLY program tRIGHTCURLY
+   15     | %empty
+
+   16 while: tWHILE tLEFTPAREN exp tRIGHTPAREN tLEFTCURLY program tRIGHTCURLY
+
+   17 stmts: tIDENTIFIER tASSIGN exp tSEMICOLON
+   18      | read
+   19      | print
+
+   20 read: tREAD tLEFTPAREN tIDENTIFIER tRIGHTPAREN tSEMICOLON
+
+   21 print: tPRINT tLEFTPAREN exp tRIGHTPAREN tSEMICOLON
+
+   22 exp: exp tPLUS exp
+   23    | exp tMINUS exp
+   24    | exp tTIMES exp
+   25    | exp tDIV exp
+   26    | tNOT exp
+   27    | tMINUS exp
+   28    | tLEFTPAREN exp tRIGHTPAREN
+   29    | exp tAND exp
+   30    | exp tOR exp
+   31    | exp tNOTEQUAL exp
+   32    | exp tEQUAL exp
+   33    | exp tGEQ exp
+   34    | exp tLEQ exp
+   35    | exp tGREATER exp
+   36    | exp tSMALLER exp
+   37    | term
+
+   38 term: tIDENTIFIER
+   39     | tFLOATVAL
+   40     | tINTVAL
+   41     | tSTRINGVAL
+   42     | tTRUE
+   43     | tFALSE
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+tIDENTIFIER <identifier> (258) 7 8 17 20 38
+tINTVAL <intval> (259) 40
+tFLOATVAL <floatval> (260) 39
+tSTRINGVAL <stringval> (261) 41
+tVAR (262) 7 8
+tINT (263) 9
+tFLOAT (264) 10
+tBOOL (265) 12
+tSTRING (266) 11
+tTRUE (267) 42
+tFALSE (268) 43
+tIF (269) 13
+tELSE (270) 14
+tWHILE (271) 16
+tREAD (272) 20
+tPRINT (273) 21
+tCOLON (274) 8
+tASSIGN (275) 7 8 17
+tSEMICOLON (276) 7 8 17 20 21
+tPLUS (277) 22
+tMINUS (278) 23 27
+tTIMES (279) 24
+tDIV (280) 25
+tEQUAL (281) 32
+tNOTEQUAL (282) 31
+tGEQ (283) 33
+tLEQ (284) 34
+tGREATER (285) 35
+tSMALLER (286) 36
+tAND (287) 29
+tOR (288) 30
+tNOT (289) 26
+tLEFTPAREN (290) 13 16 20 21 28
+tRIGHTPAREN (291) 13 16 20 21 28
+tLEFTCURLY (292) 13 14 16
+tRIGHTCURLY (293) 13 14 16
+tUMINUS (294)
+tCOMMENT (295) 1
+
+
+Nonterminals, with rules where they appear
+
+$accept (41)
+    on left: 0
+program (42)
+    on left: 1 2 3 4 5 6, on right: 0 1 2 3 4 5 13 14 16
+dcl (43)
+    on left: 7 8, on right: 4
+type (44)
+    on left: 9 10 11 12, on right: 8
+if (45)
+    on left: 13, on right: 2
+else (46)
+    on left: 14 15, on right: 13
+while (47)
+    on left: 16, on right: 3
+stmts (48)
+    on left: 17 18 19, on right: 5
+read (49)
+    on left: 20, on right: 18
+print (50)
+    on left: 21, on right: 19
+exp (51)
+    on left: 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37, on right:
+    7 8 13 16 17 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36
+term (52)
+    on left: 38 39 40 41 42 43, on right: 37
+
+
+State 0
+
+    0 $accept: . program $end
+
+    tIDENTIFIER  shift, and go to state 1
+    tVAR         shift, and go to state 2
+    tIF          shift, and go to state 3
+    tWHILE       shift, and go to state 4
+    tREAD        shift, and go to state 5
+    tPRINT       shift, and go to state 6
+    tCOMMENT     shift, and go to state 7
+
+    $default  reduce using rule 6 (program)
+
+    program  go to state 8
+    dcl      go to state 9
+    if       go to state 10
+    while    go to state 11
+    stmts    go to state 12
+    read     go to state 13
+    print    go to state 14
+
+
+State 1
+
+   17 stmts: tIDENTIFIER . tASSIGN exp tSEMICOLON
+
+    tASSIGN  shift, and go to state 15
+
+
+State 2
+
+    7 dcl: tVAR . tIDENTIFIER tASSIGN exp tSEMICOLON
+    8    | tVAR . tIDENTIFIER tCOLON type tASSIGN exp tSEMICOLON
+
+    tIDENTIFIER  shift, and go to state 16
+
+
+State 3
+
+   13 if: tIF . tLEFTPAREN exp tRIGHTPAREN tLEFTCURLY program tRIGHTCURLY else
+
+    tLEFTPAREN  shift, and go to state 17
+
+
+State 4
+
+   16 while: tWHILE . tLEFTPAREN exp tRIGHTPAREN tLEFTCURLY program tRIGHTCURLY
+
+    tLEFTPAREN  shift, and go to state 18
+
+
+State 5
+
+   20 read: tREAD . tLEFTPAREN tIDENTIFIER tRIGHTPAREN tSEMICOLON
+
+    tLEFTPAREN  shift, and go to state 19
+
+
+State 6
+
+   21 print: tPRINT . tLEFTPAREN exp tRIGHTPAREN tSEMICOLON
+
+    tLEFTPAREN  shift, and go to state 20
+
+
+State 7
+
+    1 program: tCOMMENT . program
+
+    tIDENTIFIER  shift, and go to state 1
+    tVAR         shift, and go to state 2
+    tIF          shift, and go to state 3
+    tWHILE       shift, and go to state 4
+    tREAD        shift, and go to state 5
+    tPRINT       shift, and go to state 6
+    tCOMMENT     shift, and go to state 7
+
+    $default  reduce using rule 6 (program)
+
+    program  go to state 21
+    dcl      go to state 9
+    if       go to state 10
+    while    go to state 11
+    stmts    go to state 12
+    read     go to state 13
+    print    go to state 14
+
+
+State 8
+
+    0 $accept: program . $end
+
+    $end  shift, and go to state 22
+
+
+State 9
+
+    4 program: dcl . program
+
+    tIDENTIFIER  shift, and go to state 1
+    tVAR         shift, and go to state 2
+    tIF          shift, and go to state 3
+    tWHILE       shift, and go to state 4
+    tREAD        shift, and go to state 5
+    tPRINT       shift, and go to state 6
+    tCOMMENT     shift, and go to state 7
+
+    $default  reduce using rule 6 (program)
+
+    program  go to state 23
+    dcl      go to state 9
+    if       go to state 10
+    while    go to state 11
+    stmts    go to state 12
+    read     go to state 13
+    print    go to state 14
+
+
+State 10
+
+    2 program: if . program
+
+    tIDENTIFIER  shift, and go to state 1
+    tVAR         shift, and go to state 2
+    tIF          shift, and go to state 3
+    tWHILE       shift, and go to state 4
+    tREAD        shift, and go to state 5
+    tPRINT       shift, and go to state 6
+    tCOMMENT     shift, and go to state 7
+
+    $default  reduce using rule 6 (program)
+
+    program  go to state 24
+    dcl      go to state 9
+    if       go to state 10
+    while    go to state 11
+    stmts    go to state 12
+    read     go to state 13
+    print    go to state 14
+
+
+State 11
+
+    3 program: while . program
+
+    tIDENTIFIER  shift, and go to state 1
+    tVAR         shift, and go to state 2
+    tIF          shift, and go to state 3
+    tWHILE       shift, and go to state 4
+    tREAD        shift, and go to state 5
+    tPRINT       shift, and go to state 6
+    tCOMMENT     shift, and go to state 7
+
+    $default  reduce using rule 6 (program)
+
+    program  go to state 25
+    dcl      go to state 9
+    if       go to state 10
+    while    go to state 11
+    stmts    go to state 12
+    read     go to state 13
+    print    go to state 14
+
+
+State 12
+
+    5 program: stmts . program
+
+    tIDENTIFIER  shift, and go to state 1
+    tVAR         shift, and go to state 2
+    tIF          shift, and go to state 3
+    tWHILE       shift, and go to state 4
+    tREAD        shift, and go to state 5
+    tPRINT       shift, and go to state 6
+    tCOMMENT     shift, and go to state 7
+
+    $default  reduce using rule 6 (program)
+
+    program  go to state 26
+    dcl      go to state 9
+    if       go to state 10
+    while    go to state 11
+    stmts    go to state 12
+    read     go to state 13
+    print    go to state 14
+
+
+State 13
+
+   18 stmts: read .
+
+    $default  reduce using rule 18 (stmts)
+
+
+State 14
+
+   19 stmts: print .
+
+    $default  reduce using rule 19 (stmts)
+
+
+State 15
+
+   17 stmts: tIDENTIFIER tASSIGN . exp tSEMICOLON
+
+    tIDENTIFIER  shift, and go to state 27
+    tINTVAL      shift, and go to state 28
+    tFLOATVAL    shift, and go to state 29
+    tSTRINGVAL   shift, and go to state 30
+    tTRUE        shift, and go to state 31
+    tFALSE       shift, and go to state 32
+    tMINUS       shift, and go to state 33
+    tNOT         shift, and go to state 34
+    tLEFTPAREN   shift, and go to state 35
+
+    exp   go to state 36
+    term  go to state 37
+
+
+State 16
+
+    7 dcl: tVAR tIDENTIFIER . tASSIGN exp tSEMICOLON
+    8    | tVAR tIDENTIFIER . tCOLON type tASSIGN exp tSEMICOLON
+
+    tCOLON   shift, and go to state 38
+    tASSIGN  shift, and go to state 39
+
+
+State 17
+
+   13 if: tIF tLEFTPAREN . exp tRIGHTPAREN tLEFTCURLY program tRIGHTCURLY else
+
+    tIDENTIFIER  shift, and go to state 27
+    tINTVAL      shift, and go to state 28
+    tFLOATVAL    shift, and go to state 29
+    tSTRINGVAL   shift, and go to state 30
+    tTRUE        shift, and go to state 31
+    tFALSE       shift, and go to state 32
+    tMINUS       shift, and go to state 33
+    tNOT         shift, and go to state 34
+    tLEFTPAREN   shift, and go to state 35
+
+    exp   go to state 40
+    term  go to state 37
+
+
+State 18
+
+   16 while: tWHILE tLEFTPAREN . exp tRIGHTPAREN tLEFTCURLY program tRIGHTCURLY
+
+    tIDENTIFIER  shift, and go to state 27
+    tINTVAL      shift, and go to state 28
+    tFLOATVAL    shift, and go to state 29
+    tSTRINGVAL   shift, and go to state 30
+    tTRUE        shift, and go to state 31
+    tFALSE       shift, and go to state 32
+    tMINUS       shift, and go to state 33
+    tNOT         shift, and go to state 34
+    tLEFTPAREN   shift, and go to state 35
+
+    exp   go to state 41
+    term  go to state 37
+
+
+State 19
+
+   20 read: tREAD tLEFTPAREN . tIDENTIFIER tRIGHTPAREN tSEMICOLON
+
+    tIDENTIFIER  shift, and go to state 42
+
+
+State 20
+
+   21 print: tPRINT tLEFTPAREN . exp tRIGHTPAREN tSEMICOLON
+
+    tIDENTIFIER  shift, and go to state 27
+    tINTVAL      shift, and go to state 28
+    tFLOATVAL    shift, and go to state 29
+    tSTRINGVAL   shift, and go to state 30
+    tTRUE        shift, and go to state 31
+    tFALSE       shift, and go to state 32
+    tMINUS       shift, and go to state 33
+    tNOT         shift, and go to state 34
+    tLEFTPAREN   shift, and go to state 35
+
+    exp   go to state 43
+    term  go to state 37
+
+
+State 21
+
+    1 program: tCOMMENT program .
+
+    $default  reduce using rule 1 (program)
+
+
+State 22
+
+    0 $accept: program $end .
+
+    $default  accept
+
+
+State 23
+
+    4 program: dcl program .
+
+    $default  reduce using rule 4 (program)
+
+
+State 24
+
+    2 program: if program .
+
+    $default  reduce using rule 2 (program)
+
+
+State 25
+
+    3 program: while program .
+
+    $default  reduce using rule 3 (program)
+
+
+State 26
+
+    5 program: stmts program .
+
+    $default  reduce using rule 5 (program)
+
+
+State 27
+
+   38 term: tIDENTIFIER .
+
+    $default  reduce using rule 38 (term)
+
+
+State 28
+
+   40 term: tINTVAL .
+
+    $default  reduce using rule 40 (term)
+
+
+State 29
+
+   39 term: tFLOATVAL .
+
+    $default  reduce using rule 39 (term)
+
+
+State 30
+
+   41 term: tSTRINGVAL .
+
+    $default  reduce using rule 41 (term)
+
+
+State 31
+
+   42 term: tTRUE .
+
+    $default  reduce using rule 42 (term)
+
+
+State 32
+
+   43 term: tFALSE .
+
+    $default  reduce using rule 43 (term)
+
+
+State 33
+
+   27 exp: tMINUS . exp
+
+    tIDENTIFIER  shift, and go to state 27
+    tINTVAL      shift, and go to state 28
+    tFLOATVAL    shift, and go to state 29
+    tSTRINGVAL   shift, and go to state 30
+    tTRUE        shift, and go to state 31
+    tFALSE       shift, and go to state 32
+    tMINUS       shift, and go to state 33
+    tNOT         shift, and go to state 34
+    tLEFTPAREN   shift, and go to state 35
+
+    exp   go to state 44
+    term  go to state 37
+
+
+State 34
+
+   26 exp: tNOT . exp
+
+    tIDENTIFIER  shift, and go to state 27
+    tINTVAL      shift, and go to state 28
+    tFLOATVAL    shift, and go to state 29
+    tSTRINGVAL   shift, and go to state 30
+    tTRUE        shift, and go to state 31
+    tFALSE       shift, and go to state 32
+    tMINUS       shift, and go to state 33
+    tNOT         shift, and go to state 34
+    tLEFTPAREN   shift, and go to state 35
+
+    exp   go to state 45
+    term  go to state 37
+
+
+State 35
+
+   28 exp: tLEFTPAREN . exp tRIGHTPAREN
+
+    tIDENTIFIER  shift, and go to state 27
+    tINTVAL      shift, and go to state 28
+    tFLOATVAL    shift, and go to state 29
+    tSTRINGVAL   shift, and go to state 30
+    tTRUE        shift, and go to state 31
+    tFALSE       shift, and go to state 32
+    tMINUS       shift, and go to state 33
+    tNOT         shift, and go to state 34
+    tLEFTPAREN   shift, and go to state 35
+
+    exp   go to state 46
+    term  go to state 37
+
+
+State 36
+
+   17 stmts: tIDENTIFIER tASSIGN exp . tSEMICOLON
+   22 exp: exp . tPLUS exp
+   23    | exp . tMINUS exp
+   24    | exp . tTIMES exp
+   25    | exp . tDIV exp
+   29    | exp . tAND exp
+   30    | exp . tOR exp
+   31    | exp . tNOTEQUAL exp
+   32    | exp . tEQUAL exp
+   33    | exp . tGEQ exp
+   34    | exp . tLEQ exp
+   35    | exp . tGREATER exp
+   36    | exp . tSMALLER exp
+
+    tSEMICOLON  shift, and go to state 47
+    tPLUS       shift, and go to state 48
+    tMINUS      shift, and go to state 49
+    tTIMES      shift, and go to state 50
+    tDIV        shift, and go to state 51
+    tEQUAL      shift, and go to state 52
+    tNOTEQUAL   shift, and go to state 53
+    tGEQ        shift, and go to state 54
+    tLEQ        shift, and go to state 55
+    tGREATER    shift, and go to state 56
+    tSMALLER    shift, and go to state 57
+    tAND        shift, and go to state 58
+    tOR         shift, and go to state 59
+
+
+State 37
+
+   37 exp: term .
+
+    $default  reduce using rule 37 (exp)
+
+
+State 38
+
+    8 dcl: tVAR tIDENTIFIER tCOLON . type tASSIGN exp tSEMICOLON
+
+    tINT     shift, and go to state 60
+    tFLOAT   shift, and go to state 61
+    tBOOL    shift, and go to state 62
+    tSTRING  shift, and go to state 63
+
+    type  go to state 64
+
+
+State 39
+
+    7 dcl: tVAR tIDENTIFIER tASSIGN . exp tSEMICOLON
+
+    tIDENTIFIER  shift, and go to state 27
+    tINTVAL      shift, and go to state 28
+    tFLOATVAL    shift, and go to state 29
+    tSTRINGVAL   shift, and go to state 30
+    tTRUE        shift, and go to state 31
+    tFALSE       shift, and go to state 32
+    tMINUS       shift, and go to state 33
+    tNOT         shift, and go to state 34
+    tLEFTPAREN   shift, and go to state 35
+
+    exp   go to state 65
+    term  go to state 37
+
+
+State 40
+
+   13 if: tIF tLEFTPAREN exp . tRIGHTPAREN tLEFTCURLY program tRIGHTCURLY else
+   22 exp: exp . tPLUS exp
+   23    | exp . tMINUS exp
+   24    | exp . tTIMES exp
+   25    | exp . tDIV exp
+   29    | exp . tAND exp
+   30    | exp . tOR exp
+   31    | exp . tNOTEQUAL exp
+   32    | exp . tEQUAL exp
+   33    | exp . tGEQ exp
+   34    | exp . tLEQ exp
+   35    | exp . tGREATER exp
+   36    | exp . tSMALLER exp
+
+    tPLUS        shift, and go to state 48
+    tMINUS       shift, and go to state 49
+    tTIMES       shift, and go to state 50
+    tDIV         shift, and go to state 51
+    tEQUAL       shift, and go to state 52
+    tNOTEQUAL    shift, and go to state 53
+    tGEQ         shift, and go to state 54
+    tLEQ         shift, and go to state 55
+    tGREATER     shift, and go to state 56
+    tSMALLER     shift, and go to state 57
+    tAND         shift, and go to state 58
+    tOR          shift, and go to state 59
+    tRIGHTPAREN  shift, and go to state 66
+
+
+State 41
+
+   16 while: tWHILE tLEFTPAREN exp . tRIGHTPAREN tLEFTCURLY program tRIGHTCURLY
+   22 exp: exp . tPLUS exp
+   23    | exp . tMINUS exp
+   24    | exp . tTIMES exp
+   25    | exp . tDIV exp
+   29    | exp . tAND exp
+   30    | exp . tOR exp
+   31    | exp . tNOTEQUAL exp
+   32    | exp . tEQUAL exp
+   33    | exp . tGEQ exp
+   34    | exp . tLEQ exp
+   35    | exp . tGREATER exp
+   36    | exp . tSMALLER exp
+
+    tPLUS        shift, and go to state 48
+    tMINUS       shift, and go to state 49
+    tTIMES       shift, and go to state 50
+    tDIV         shift, and go to state 51
+    tEQUAL       shift, and go to state 52
+    tNOTEQUAL    shift, and go to state 53
+    tGEQ         shift, and go to state 54
+    tLEQ         shift, and go to state 55
+    tGREATER     shift, and go to state 56
+    tSMALLER     shift, and go to state 57
+    tAND         shift, and go to state 58
+    tOR          shift, and go to state 59
+    tRIGHTPAREN  shift, and go to state 67
+
+
+State 42
+
+   20 read: tREAD tLEFTPAREN tIDENTIFIER . tRIGHTPAREN tSEMICOLON
+
+    tRIGHTPAREN  shift, and go to state 68
+
+
+State 43
+
+   21 print: tPRINT tLEFTPAREN exp . tRIGHTPAREN tSEMICOLON
+   22 exp: exp . tPLUS exp
+   23    | exp . tMINUS exp
+   24    | exp . tTIMES exp
+   25    | exp . tDIV exp
+   29    | exp . tAND exp
+   30    | exp . tOR exp
+   31    | exp . tNOTEQUAL exp
+   32    | exp . tEQUAL exp
+   33    | exp . tGEQ exp
+   34    | exp . tLEQ exp
+   35    | exp . tGREATER exp
+   36    | exp . tSMALLER exp
+
+    tPLUS        shift, and go to state 48
+    tMINUS       shift, and go to state 49
+    tTIMES       shift, and go to state 50
+    tDIV         shift, and go to state 51
+    tEQUAL       shift, and go to state 52
+    tNOTEQUAL    shift, and go to state 53
+    tGEQ         shift, and go to state 54
+    tLEQ         shift, and go to state 55
+    tGREATER     shift, and go to state 56
+    tSMALLER     shift, and go to state 57
+    tAND         shift, and go to state 58
+    tOR          shift, and go to state 59
+    tRIGHTPAREN  shift, and go to state 69
+
+
+State 44
+
+   22 exp: exp . tPLUS exp
+   23    | exp . tMINUS exp
+   24    | exp . tTIMES exp
+   25    | exp . tDIV exp
+   27    | tMINUS exp .
+   29    | exp . tAND exp
+   30    | exp . tOR exp
+   31    | exp . tNOTEQUAL exp
+   32    | exp . tEQUAL exp
+   33    | exp . tGEQ exp
+   34    | exp . tLEQ exp
+   35    | exp . tGREATER exp
+   36    | exp . tSMALLER exp
+
+    $default  reduce using rule 27 (exp)
+
+
+State 45
+
+   22 exp: exp . tPLUS exp
+   23    | exp . tMINUS exp
+   24    | exp . tTIMES exp
+   25    | exp . tDIV exp
+   26    | tNOT exp .
+   29    | exp . tAND exp
+   30    | exp . tOR exp
+   31    | exp . tNOTEQUAL exp
+   32    | exp . tEQUAL exp
+   33    | exp . tGEQ exp
+   34    | exp . tLEQ exp
+   35    | exp . tGREATER exp
+   36    | exp . tSMALLER exp
+
+    $default  reduce using rule 26 (exp)
+
+
+State 46
+
+   22 exp: exp . tPLUS exp
+   23    | exp . tMINUS exp
+   24    | exp . tTIMES exp
+   25    | exp . tDIV exp
+   28    | tLEFTPAREN exp . tRIGHTPAREN
+   29    | exp . tAND exp
+   30    | exp . tOR exp
+   31    | exp . tNOTEQUAL exp
+   32    | exp . tEQUAL exp
+   33    | exp . tGEQ exp
+   34    | exp . tLEQ exp
+   35    | exp . tGREATER exp
+   36    | exp . tSMALLER exp
+
+    tPLUS        shift, and go to state 48
+    tMINUS       shift, and go to state 49
+    tTIMES       shift, and go to state 50
+    tDIV         shift, and go to state 51
+    tEQUAL       shift, and go to state 52
+    tNOTEQUAL    shift, and go to state 53
+    tGEQ         shift, and go to state 54
+    tLEQ         shift, and go to state 55
+    tGREATER     shift, and go to state 56
+    tSMALLER     shift, and go to state 57
+    tAND         shift, and go to state 58
+    tOR          shift, and go to state 59
+    tRIGHTPAREN  shift, and go to state 70
+
+
+State 47
+
+   17 stmts: tIDENTIFIER tASSIGN exp tSEMICOLON .
+
+    $default  reduce using rule 17 (stmts)
+
+
+State 48
+
+   22 exp: exp tPLUS . exp
+
+    tIDENTIFIER  shift, and go to state 27
+    tINTVAL      shift, and go to state 28
+    tFLOATVAL    shift, and go to state 29
+    tSTRINGVAL   shift, and go to state 30
+    tTRUE        shift, and go to state 31
+    tFALSE       shift, and go to state 32
+    tMINUS       shift, and go to state 33
+    tNOT         shift, and go to state 34
+    tLEFTPAREN   shift, and go to state 35
+
+    exp   go to state 71
+    term  go to state 37
+
+
+State 49
+
+   23 exp: exp tMINUS . exp
+
+    tIDENTIFIER  shift, and go to state 27
+    tINTVAL      shift, and go to state 28
+    tFLOATVAL    shift, and go to state 29
+    tSTRINGVAL   shift, and go to state 30
+    tTRUE        shift, and go to state 31
+    tFALSE       shift, and go to state 32
+    tMINUS       shift, and go to state 33
+    tNOT         shift, and go to state 34
+    tLEFTPAREN   shift, and go to state 35
+
+    exp   go to state 72
+    term  go to state 37
+
+
+State 50
+
+   24 exp: exp tTIMES . exp
+
+    tIDENTIFIER  shift, and go to state 27
+    tINTVAL      shift, and go to state 28
+    tFLOATVAL    shift, and go to state 29
+    tSTRINGVAL   shift, and go to state 30
+    tTRUE        shift, and go to state 31
+    tFALSE       shift, and go to state 32
+    tMINUS       shift, and go to state 33
+    tNOT         shift, and go to state 34
+    tLEFTPAREN   shift, and go to state 35
+
+    exp   go to state 73
+    term  go to state 37
+
+
+State 51
+
+   25 exp: exp tDIV . exp
+
+    tIDENTIFIER  shift, and go to state 27
+    tINTVAL      shift, and go to state 28
+    tFLOATVAL    shift, and go to state 29
+    tSTRINGVAL   shift, and go to state 30
+    tTRUE        shift, and go to state 31
+    tFALSE       shift, and go to state 32
+    tMINUS       shift, and go to state 33
+    tNOT         shift, and go to state 34
+    tLEFTPAREN   shift, and go to state 35
+
+    exp   go to state 74
+    term  go to state 37
+
+
+State 52
+
+   32 exp: exp tEQUAL . exp
+
+    tIDENTIFIER  shift, and go to state 27
+    tINTVAL      shift, and go to state 28
+    tFLOATVAL    shift, and go to state 29
+    tSTRINGVAL   shift, and go to state 30
+    tTRUE        shift, and go to state 31
+    tFALSE       shift, and go to state 32
+    tMINUS       shift, and go to state 33
+    tNOT         shift, and go to state 34
+    tLEFTPAREN   shift, and go to state 35
+
+    exp   go to state 75
+    term  go to state 37
+
+
+State 53
+
+   31 exp: exp tNOTEQUAL . exp
+
+    tIDENTIFIER  shift, and go to state 27
+    tINTVAL      shift, and go to state 28
+    tFLOATVAL    shift, and go to state 29
+    tSTRINGVAL   shift, and go to state 30
+    tTRUE        shift, and go to state 31
+    tFALSE       shift, and go to state 32
+    tMINUS       shift, and go to state 33
+    tNOT         shift, and go to state 34
+    tLEFTPAREN   shift, and go to state 35
+
+    exp   go to state 76
+    term  go to state 37
+
+
+State 54
+
+   33 exp: exp tGEQ . exp
+
+    tIDENTIFIER  shift, and go to state 27
+    tINTVAL      shift, and go to state 28
+    tFLOATVAL    shift, and go to state 29
+    tSTRINGVAL   shift, and go to state 30
+    tTRUE        shift, and go to state 31
+    tFALSE       shift, and go to state 32
+    tMINUS       shift, and go to state 33
+    tNOT         shift, and go to state 34
+    tLEFTPAREN   shift, and go to state 35
+
+    exp   go to state 77
+    term  go to state 37
+
+
+State 55
+
+   34 exp: exp tLEQ . exp
+
+    tIDENTIFIER  shift, and go to state 27
+    tINTVAL      shift, and go to state 28
+    tFLOATVAL    shift, and go to state 29
+    tSTRINGVAL   shift, and go to state 30
+    tTRUE        shift, and go to state 31
+    tFALSE       shift, and go to state 32
+    tMINUS       shift, and go to state 33
+    tNOT         shift, and go to state 34
+    tLEFTPAREN   shift, and go to state 35
+
+    exp   go to state 78
+    term  go to state 37
+
+
+State 56
+
+   35 exp: exp tGREATER . exp
+
+    tIDENTIFIER  shift, and go to state 27
+    tINTVAL      shift, and go to state 28
+    tFLOATVAL    shift, and go to state 29
+    tSTRINGVAL   shift, and go to state 30
+    tTRUE        shift, and go to state 31
+    tFALSE       shift, and go to state 32
+    tMINUS       shift, and go to state 33
+    tNOT         shift, and go to state 34
+    tLEFTPAREN   shift, and go to state 35
+
+    exp   go to state 79
+    term  go to state 37
+
+
+State 57
+
+   36 exp: exp tSMALLER . exp
+
+    tIDENTIFIER  shift, and go to state 27
+    tINTVAL      shift, and go to state 28
+    tFLOATVAL    shift, and go to state 29
+    tSTRINGVAL   shift, and go to state 30
+    tTRUE        shift, and go to state 31
+    tFALSE       shift, and go to state 32
+    tMINUS       shift, and go to state 33
+    tNOT         shift, and go to state 34
+    tLEFTPAREN   shift, and go to state 35
+
+    exp   go to state 80
+    term  go to state 37
+
+
+State 58
+
+   29 exp: exp tAND . exp
+
+    tIDENTIFIER  shift, and go to state 27
+    tINTVAL      shift, and go to state 28
+    tFLOATVAL    shift, and go to state 29
+    tSTRINGVAL   shift, and go to state 30
+    tTRUE        shift, and go to state 31
+    tFALSE       shift, and go to state 32
+    tMINUS       shift, and go to state 33
+    tNOT         shift, and go to state 34
+    tLEFTPAREN   shift, and go to state 35
+
+    exp   go to state 81
+    term  go to state 37
+
+
+State 59
+
+   30 exp: exp tOR . exp
+
+    tIDENTIFIER  shift, and go to state 27
+    tINTVAL      shift, and go to state 28
+    tFLOATVAL    shift, and go to state 29
+    tSTRINGVAL   shift, and go to state 30
+    tTRUE        shift, and go to state 31
+    tFALSE       shift, and go to state 32
+    tMINUS       shift, and go to state 33
+    tNOT         shift, and go to state 34
+    tLEFTPAREN   shift, and go to state 35
+
+    exp   go to state 82
+    term  go to state 37
+
+
+State 60
+
+    9 type: tINT .
+
+    $default  reduce using rule 9 (type)
+
+
+State 61
+
+   10 type: tFLOAT .
+
+    $default  reduce using rule 10 (type)
+
+
+State 62
+
+   12 type: tBOOL .
+
+    $default  reduce using rule 12 (type)
+
+
+State 63
+
+   11 type: tSTRING .
+
+    $default  reduce using rule 11 (type)
+
+
+State 64
+
+    8 dcl: tVAR tIDENTIFIER tCOLON type . tASSIGN exp tSEMICOLON
+
+    tASSIGN  shift, and go to state 83
+
+
+State 65
+
+    7 dcl: tVAR tIDENTIFIER tASSIGN exp . tSEMICOLON
+   22 exp: exp . tPLUS exp
+   23    | exp . tMINUS exp
+   24    | exp . tTIMES exp
+   25    | exp . tDIV exp
+   29    | exp . tAND exp
+   30    | exp . tOR exp
+   31    | exp . tNOTEQUAL exp
+   32    | exp . tEQUAL exp
+   33    | exp . tGEQ exp
+   34    | exp . tLEQ exp
+   35    | exp . tGREATER exp
+   36    | exp . tSMALLER exp
+
+    tSEMICOLON  shift, and go to state 84
+    tPLUS       shift, and go to state 48
+    tMINUS      shift, and go to state 49
+    tTIMES      shift, and go to state 50
+    tDIV        shift, and go to state 51
+    tEQUAL      shift, and go to state 52
+    tNOTEQUAL   shift, and go to state 53
+    tGEQ        shift, and go to state 54
+    tLEQ        shift, and go to state 55
+    tGREATER    shift, and go to state 56
+    tSMALLER    shift, and go to state 57
+    tAND        shift, and go to state 58
+    tOR         shift, and go to state 59
+
+
+State 66
+
+   13 if: tIF tLEFTPAREN exp tRIGHTPAREN . tLEFTCURLY program tRIGHTCURLY else
+
+    tLEFTCURLY  shift, and go to state 85
+
+
+State 67
+
+   16 while: tWHILE tLEFTPAREN exp tRIGHTPAREN . tLEFTCURLY program tRIGHTCURLY
+
+    tLEFTCURLY  shift, and go to state 86
+
+
+State 68
+
+   20 read: tREAD tLEFTPAREN tIDENTIFIER tRIGHTPAREN . tSEMICOLON
+
+    tSEMICOLON  shift, and go to state 87
+
+
+State 69
+
+   21 print: tPRINT tLEFTPAREN exp tRIGHTPAREN . tSEMICOLON
+
+    tSEMICOLON  shift, and go to state 88
+
+
+State 70
+
+   28 exp: tLEFTPAREN exp tRIGHTPAREN .
+
+    $default  reduce using rule 28 (exp)
+
+
+State 71
+
+   22 exp: exp . tPLUS exp
+   22    | exp tPLUS exp .
+   23    | exp . tMINUS exp
+   24    | exp . tTIMES exp
+   25    | exp . tDIV exp
+   29    | exp . tAND exp
+   30    | exp . tOR exp
+   31    | exp . tNOTEQUAL exp
+   32    | exp . tEQUAL exp
+   33    | exp . tGEQ exp
+   34    | exp . tLEQ exp
+   35    | exp . tGREATER exp
+   36    | exp . tSMALLER exp
+
+    tTIMES  shift, and go to state 50
+    tDIV    shift, and go to state 51
+
+    $default  reduce using rule 22 (exp)
+
+
+State 72
+
+   22 exp: exp . tPLUS exp
+   23    | exp . tMINUS exp
+   23    | exp tMINUS exp .
+   24    | exp . tTIMES exp
+   25    | exp . tDIV exp
+   29    | exp . tAND exp
+   30    | exp . tOR exp
+   31    | exp . tNOTEQUAL exp
+   32    | exp . tEQUAL exp
+   33    | exp . tGEQ exp
+   34    | exp . tLEQ exp
+   35    | exp . tGREATER exp
+   36    | exp . tSMALLER exp
+
+    tTIMES  shift, and go to state 50
+    tDIV    shift, and go to state 51
+
+    $default  reduce using rule 23 (exp)
+
+
+State 73
+
+   22 exp: exp . tPLUS exp
+   23    | exp . tMINUS exp
+   24    | exp . tTIMES exp
+   24    | exp tTIMES exp .
+   25    | exp . tDIV exp
+   29    | exp . tAND exp
+   30    | exp . tOR exp
+   31    | exp . tNOTEQUAL exp
+   32    | exp . tEQUAL exp
+   33    | exp . tGEQ exp
+   34    | exp . tLEQ exp
+   35    | exp . tGREATER exp
+   36    | exp . tSMALLER exp
+
+    $default  reduce using rule 24 (exp)
+
+
+State 74
+
+   22 exp: exp . tPLUS exp
+   23    | exp . tMINUS exp
+   24    | exp . tTIMES exp
+   25    | exp . tDIV exp
+   25    | exp tDIV exp .
+   29    | exp . tAND exp
+   30    | exp . tOR exp
+   31    | exp . tNOTEQUAL exp
+   32    | exp . tEQUAL exp
+   33    | exp . tGEQ exp
+   34    | exp . tLEQ exp
+   35    | exp . tGREATER exp
+   36    | exp . tSMALLER exp
+
+    $default  reduce using rule 25 (exp)
+
+
+State 75
+
+   22 exp: exp . tPLUS exp
+   23    | exp . tMINUS exp
+   24    | exp . tTIMES exp
+   25    | exp . tDIV exp
+   29    | exp . tAND exp
+   30    | exp . tOR exp
+   31    | exp . tNOTEQUAL exp
+   32    | exp . tEQUAL exp
+   32    | exp tEQUAL exp .
+   33    | exp . tGEQ exp
+   34    | exp . tLEQ exp
+   35    | exp . tGREATER exp
+   36    | exp . tSMALLER exp
+
+    tPLUS   shift, and go to state 48
+    tMINUS  shift, and go to state 49
+    tTIMES  shift, and go to state 50
+    tDIV    shift, and go to state 51
+
+    $default  reduce using rule 32 (exp)
+
+
+State 76
+
+   22 exp: exp . tPLUS exp
+   23    | exp . tMINUS exp
+   24    | exp . tTIMES exp
+   25    | exp . tDIV exp
+   29    | exp . tAND exp
+   30    | exp . tOR exp
+   31    | exp . tNOTEQUAL exp
+   31    | exp tNOTEQUAL exp .
+   32    | exp . tEQUAL exp
+   33    | exp . tGEQ exp
+   34    | exp . tLEQ exp
+   35    | exp . tGREATER exp
+   36    | exp . tSMALLER exp
+
+    tPLUS   shift, and go to state 48
+    tMINUS  shift, and go to state 49
+    tTIMES  shift, and go to state 50
+    tDIV    shift, and go to state 51
+
+    $default  reduce using rule 31 (exp)
+
+
+State 77
+
+   22 exp: exp . tPLUS exp
+   23    | exp . tMINUS exp
+   24    | exp . tTIMES exp
+   25    | exp . tDIV exp
+   29    | exp . tAND exp
+   30    | exp . tOR exp
+   31    | exp . tNOTEQUAL exp
+   32    | exp . tEQUAL exp
+   33    | exp . tGEQ exp
+   33    | exp tGEQ exp .
+   34    | exp . tLEQ exp
+   35    | exp . tGREATER exp
+   36    | exp . tSMALLER exp
+
+    tPLUS   shift, and go to state 48
+    tMINUS  shift, and go to state 49
+    tTIMES  shift, and go to state 50
+    tDIV    shift, and go to state 51
+
+    $default  reduce using rule 33 (exp)
+
+
+State 78
+
+   22 exp: exp . tPLUS exp
+   23    | exp . tMINUS exp
+   24    | exp . tTIMES exp
+   25    | exp . tDIV exp
+   29    | exp . tAND exp
+   30    | exp . tOR exp
+   31    | exp . tNOTEQUAL exp
+   32    | exp . tEQUAL exp
+   33    | exp . tGEQ exp
+   34    | exp . tLEQ exp
+   34    | exp tLEQ exp .
+   35    | exp . tGREATER exp
+   36    | exp . tSMALLER exp
+
+    tPLUS   shift, and go to state 48
+    tMINUS  shift, and go to state 49
+    tTIMES  shift, and go to state 50
+    tDIV    shift, and go to state 51
+
+    $default  reduce using rule 34 (exp)
+
+
+State 79
+
+   22 exp: exp . tPLUS exp
+   23    | exp . tMINUS exp
+   24    | exp . tTIMES exp
+   25    | exp . tDIV exp
+   29    | exp . tAND exp
+   30    | exp . tOR exp
+   31    | exp . tNOTEQUAL exp
+   32    | exp . tEQUAL exp
+   33    | exp . tGEQ exp
+   34    | exp . tLEQ exp
+   35    | exp . tGREATER exp
+   35    | exp tGREATER exp .
+   36    | exp . tSMALLER exp
+
+    tPLUS   shift, and go to state 48
+    tMINUS  shift, and go to state 49
+    tTIMES  shift, and go to state 50
+    tDIV    shift, and go to state 51
+
+    $default  reduce using rule 35 (exp)
+
+
+State 80
+
+   22 exp: exp . tPLUS exp
+   23    | exp . tMINUS exp
+   24    | exp . tTIMES exp
+   25    | exp . tDIV exp
+   29    | exp . tAND exp
+   30    | exp . tOR exp
+   31    | exp . tNOTEQUAL exp
+   32    | exp . tEQUAL exp
+   33    | exp . tGEQ exp
+   34    | exp . tLEQ exp
+   35    | exp . tGREATER exp
+   36    | exp . tSMALLER exp
+   36    | exp tSMALLER exp .
+
+    tPLUS   shift, and go to state 48
+    tMINUS  shift, and go to state 49
+    tTIMES  shift, and go to state 50
+    tDIV    shift, and go to state 51
+
+    $default  reduce using rule 36 (exp)
+
+
+State 81
+
+   22 exp: exp . tPLUS exp
+   23    | exp . tMINUS exp
+   24    | exp . tTIMES exp
+   25    | exp . tDIV exp
+   29    | exp . tAND exp
+   29    | exp tAND exp .
+   30    | exp . tOR exp
+   31    | exp . tNOTEQUAL exp
+   32    | exp . tEQUAL exp
+   33    | exp . tGEQ exp
+   34    | exp . tLEQ exp
+   35    | exp . tGREATER exp
+   36    | exp . tSMALLER exp
+
+    tPLUS      shift, and go to state 48
+    tMINUS     shift, and go to state 49
+    tTIMES     shift, and go to state 50
+    tDIV       shift, and go to state 51
+    tEQUAL     shift, and go to state 52
+    tNOTEQUAL  shift, and go to state 53
+    tGEQ       shift, and go to state 54
+    tLEQ       shift, and go to state 55
+    tGREATER   shift, and go to state 56
+    tSMALLER   shift, and go to state 57
+
+    $default  reduce using rule 29 (exp)
+
+
+State 82
+
+   22 exp: exp . tPLUS exp
+   23    | exp . tMINUS exp
+   24    | exp . tTIMES exp
+   25    | exp . tDIV exp
+   29    | exp . tAND exp
+   30    | exp . tOR exp
+   30    | exp tOR exp .
+   31    | exp . tNOTEQUAL exp
+   32    | exp . tEQUAL exp
+   33    | exp . tGEQ exp
+   34    | exp . tLEQ exp
+   35    | exp . tGREATER exp
+   36    | exp . tSMALLER exp
+
+    tPLUS      shift, and go to state 48
+    tMINUS     shift, and go to state 49
+    tTIMES     shift, and go to state 50
+    tDIV       shift, and go to state 51
+    tEQUAL     shift, and go to state 52
+    tNOTEQUAL  shift, and go to state 53
+    tGEQ       shift, and go to state 54
+    tLEQ       shift, and go to state 55
+    tGREATER   shift, and go to state 56
+    tSMALLER   shift, and go to state 57
+    tAND       shift, and go to state 58
+
+    $default  reduce using rule 30 (exp)
+
+
+State 83
+
+    8 dcl: tVAR tIDENTIFIER tCOLON type tASSIGN . exp tSEMICOLON
+
+    tIDENTIFIER  shift, and go to state 27
+    tINTVAL      shift, and go to state 28
+    tFLOATVAL    shift, and go to state 29
+    tSTRINGVAL   shift, and go to state 30
+    tTRUE        shift, and go to state 31
+    tFALSE       shift, and go to state 32
+    tMINUS       shift, and go to state 33
+    tNOT         shift, and go to state 34
+    tLEFTPAREN   shift, and go to state 35
+
+    exp   go to state 89
+    term  go to state 37
+
+
+State 84
+
+    7 dcl: tVAR tIDENTIFIER tASSIGN exp tSEMICOLON .
+
+    $default  reduce using rule 7 (dcl)
+
+
+State 85
+
+   13 if: tIF tLEFTPAREN exp tRIGHTPAREN tLEFTCURLY . program tRIGHTCURLY else
+
+    tIDENTIFIER  shift, and go to state 1
+    tVAR         shift, and go to state 2
+    tIF          shift, and go to state 3
+    tWHILE       shift, and go to state 4
+    tREAD        shift, and go to state 5
+    tPRINT       shift, and go to state 6
+    tCOMMENT     shift, and go to state 7
+
+    $default  reduce using rule 6 (program)
+
+    program  go to state 90
+    dcl      go to state 9
+    if       go to state 10
+    while    go to state 11
+    stmts    go to state 12
+    read     go to state 13
+    print    go to state 14
+
+
+State 86
+
+   16 while: tWHILE tLEFTPAREN exp tRIGHTPAREN tLEFTCURLY . program tRIGHTCURLY
+
+    tIDENTIFIER  shift, and go to state 1
+    tVAR         shift, and go to state 2
+    tIF          shift, and go to state 3
+    tWHILE       shift, and go to state 4
+    tREAD        shift, and go to state 5
+    tPRINT       shift, and go to state 6
+    tCOMMENT     shift, and go to state 7
+
+    $default  reduce using rule 6 (program)
+
+    program  go to state 91
+    dcl      go to state 9
+    if       go to state 10
+    while    go to state 11
+    stmts    go to state 12
+    read     go to state 13
+    print    go to state 14
+
+
+State 87
+
+   20 read: tREAD tLEFTPAREN tIDENTIFIER tRIGHTPAREN tSEMICOLON .
+
+    $default  reduce using rule 20 (read)
+
+
+State 88
+
+   21 print: tPRINT tLEFTPAREN exp tRIGHTPAREN tSEMICOLON .
+
+    $default  reduce using rule 21 (print)
+
+
+State 89
+
+    8 dcl: tVAR tIDENTIFIER tCOLON type tASSIGN exp . tSEMICOLON
+   22 exp: exp . tPLUS exp
+   23    | exp . tMINUS exp
+   24    | exp . tTIMES exp
+   25    | exp . tDIV exp
+   29    | exp . tAND exp
+   30    | exp . tOR exp
+   31    | exp . tNOTEQUAL exp
+   32    | exp . tEQUAL exp
+   33    | exp . tGEQ exp
+   34    | exp . tLEQ exp
+   35    | exp . tGREATER exp
+   36    | exp . tSMALLER exp
+
+    tSEMICOLON  shift, and go to state 92
+    tPLUS       shift, and go to state 48
+    tMINUS      shift, and go to state 49
+    tTIMES      shift, and go to state 50
+    tDIV        shift, and go to state 51
+    tEQUAL      shift, and go to state 52
+    tNOTEQUAL   shift, and go to state 53
+    tGEQ        shift, and go to state 54
+    tLEQ        shift, and go to state 55
+    tGREATER    shift, and go to state 56
+    tSMALLER    shift, and go to state 57
+    tAND        shift, and go to state 58
+    tOR         shift, and go to state 59
+
+
+State 90
+
+   13 if: tIF tLEFTPAREN exp tRIGHTPAREN tLEFTCURLY program . tRIGHTCURLY else
+
+    tRIGHTCURLY  shift, and go to state 93
+
+
+State 91
+
+   16 while: tWHILE tLEFTPAREN exp tRIGHTPAREN tLEFTCURLY program . tRIGHTCURLY
+
+    tRIGHTCURLY  shift, and go to state 94
+
+
+State 92
+
+    8 dcl: tVAR tIDENTIFIER tCOLON type tASSIGN exp tSEMICOLON .
+
+    $default  reduce using rule 8 (dcl)
+
+
+State 93
+
+   13 if: tIF tLEFTPAREN exp tRIGHTPAREN tLEFTCURLY program tRIGHTCURLY . else
+
+    tELSE  shift, and go to state 95
+
+    $default  reduce using rule 15 (else)
+
+    else  go to state 96
+
+
+State 94
+
+   16 while: tWHILE tLEFTPAREN exp tRIGHTPAREN tLEFTCURLY program tRIGHTCURLY .
+
+    $default  reduce using rule 16 (while)
+
+
+State 95
+
+   14 else: tELSE . tLEFTCURLY program tRIGHTCURLY
+
+    tLEFTCURLY  shift, and go to state 97
+
+
+State 96
+
+   13 if: tIF tLEFTPAREN exp tRIGHTPAREN tLEFTCURLY program tRIGHTCURLY else .
+
+    $default  reduce using rule 13 (if)
+
+
+State 97
+
+   14 else: tELSE tLEFTCURLY . program tRIGHTCURLY
+
+    tIDENTIFIER  shift, and go to state 1
+    tVAR         shift, and go to state 2
+    tIF          shift, and go to state 3
+    tWHILE       shift, and go to state 4
+    tREAD        shift, and go to state 5
+    tPRINT       shift, and go to state 6
+    tCOMMENT     shift, and go to state 7
+
+    $default  reduce using rule 6 (program)
+
+    program  go to state 98
+    dcl      go to state 9
+    if       go to state 10
+    while    go to state 11
+    stmts    go to state 12
+    read     go to state 13
+    print    go to state 14
+
+
+State 98
+
+   14 else: tELSE tLEFTCURLY program . tRIGHTCURLY
+
+    tRIGHTCURLY  shift, and go to state 99
+
+
+State 99
+
+   14 else: tELSE tLEFTCURLY program tRIGHTCURLY .
+
+    $default  reduce using rule 14 (else)
