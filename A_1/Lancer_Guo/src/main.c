@@ -3,7 +3,7 @@
 #include "main.h"
 #include <string.h>
 
-void yyparse();
+int yyparse();
 int yylex();
 int token;
 
@@ -24,15 +24,17 @@ int main(int argc, char *argv[])
     else if (strcmp(argv[1], "scan") == 0)
     {
         token = 0;
-        yylex();    //for parsing purpose, yylex() only has to be called once
+        while (yylex() != 0) {}    //for parsing purpose, yylex() only has to be called once
         printf("OK\n");
         return 0;
     }
     else if (strcmp(argv[1], "parse") == 0)
     {
         token = 0;
-        yyparse();  //need to check if error occurs
-        printf("OK\n");
+        if (yyparse() == 0) { 
+		//need to check if error occurs
+        	printf("OK\n");
+	}
         return 0;
     }
     return 0;

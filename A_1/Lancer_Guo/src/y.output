@@ -61,10 +61,10 @@ Terminals, with rules where they appear
 
 $end (0) 0
 error (256)
-tIDENTIFIER <identifier> (258) 7 8 17 20 38
-tINTVAL <intval> (259) 40
-tFLOATVAL <floatval> (260) 39
-tSTRINGVAL <stringval> (261) 41
+tIDENTIFIER (258) 7 8 17 20 38
+tINTVAL (259) 40
+tFLOATVAL (260) 39
+tSTRINGVAL (261) 41
 tVAR (262) 7 8
 tINT (263) 9
 tFLOAT (264) 10
