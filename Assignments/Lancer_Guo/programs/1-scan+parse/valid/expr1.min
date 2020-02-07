@@ -1,0 +1,10 @@
+# valid expression
+var x : int = 0;
+var y : float = 0.0;
+var z : string = "";
+var b : bool = False;
+
+x = 3;
+y = 3.0;
+z = "string";
+b = True;
