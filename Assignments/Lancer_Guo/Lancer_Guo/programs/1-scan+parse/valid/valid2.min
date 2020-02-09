@@ -1,0 +1,23 @@
+# find all x, y satisfying ax + by = n
+
+read(a);
+read(b);
+read(n);
+
+var x : int = 0;
+var count = 0;
+while (x * a < n) {
+    var d : int = (n - (x * a)) / b;
+    var mod : int = (n - (x * a)) - d * b;
+    if (mod == 0) {
+        count = count + 1;
+        print("Solution " + count);
+        print("x: " + x);
+        print("y: " + d);
+    }
+    x = x + 1;
+}
+
+if (count == 0) {
+    print("No solution");
+}
