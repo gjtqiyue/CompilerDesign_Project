@@ -1,5 +1,7 @@
 # Comp520_CompilerDesign
 
+### project directory: https://github.com/gjtqiyue/CompilerDesign_Project/tree/master/Project/GoLite-compiler-project
+
 We provide 3 scripts for convenience and two directories for organization:
 
 programs: Test programs are organized by compilation phase and by expected result. Valid programs should output OK and status code 0, while invalid programs should output Error: <description> and status code 1.
