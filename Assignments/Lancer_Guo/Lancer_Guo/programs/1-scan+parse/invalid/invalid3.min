@@ -1,3 +1,0 @@
-# generate errors on float scanning
-
-var x : float = 0.0.0;

@@ -1,0 +1,2 @@
+# condition in if loop doesn't evaluate to bool
+if(-55){}

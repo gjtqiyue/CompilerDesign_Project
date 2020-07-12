@@ -1,3 +1,0 @@
-# valid bool literals
-var x : bool = True;
-var y : bool = False;

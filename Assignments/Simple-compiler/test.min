@@ -1,0 +1,23 @@
+var x = 5;
+x = 7;
+var y : bool = True;
+var i : bool = False;
+if (y == True) {
+	if (!y == False) {
+		read(y);
+		print(y);
+	}
+}
+var str = "hello";
+var str1 = "Hello" + "World";
+print(str);
+print(str1);
+print(str + str1);
+var time : int = 5;
+var ro : float = 6.0;
+if (time + ro == 11) {
+	print(True);
+}
+else {
+	print((time == 5));
+}

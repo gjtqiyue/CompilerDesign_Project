@@ -1,4 +1,0 @@
-# invalid integer and float with leading zero
-
-var x: int = 0002;
-var y: float = 0000.434400000;

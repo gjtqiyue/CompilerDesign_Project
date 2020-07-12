@@ -1,8 +1,0 @@
-# valid while, expr condition, block
-while (True) {
-}
-
-# valid while with condition variables, block
-var x : int = 0;
-while (x == 0) {
-}

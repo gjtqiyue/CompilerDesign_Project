@@ -1,5 +1,0 @@
-# generate error on missing semicolon
-
-if (True) {
-    print("hello")
-}

@@ -1,0 +1,4 @@
+# assign variable with different type
+var _x : int = 5;
+_x = "Time";
+print(_x);

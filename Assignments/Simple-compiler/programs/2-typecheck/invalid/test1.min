@@ -1,0 +1,4 @@
+# invalid addition of  string and float
+var s:string = "hello";
+var b:float = 0.0;
+print(s + b);

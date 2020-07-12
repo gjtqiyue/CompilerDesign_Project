@@ -1,0 +1,7 @@
+# redeclaration of same variable
+var x : float = 5 * 5.0;
+var y : int = 10;
+var x = 10;
+if (x > y) {
+    var x = 10;
+}

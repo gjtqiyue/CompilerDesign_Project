@@ -1,8 +1,0 @@
-# valid if, expr condition, block
-if (100 > 50) {
-}
-
-# valid if, identifier condition, block
-var x : bool = True;
-if (x) {
-}

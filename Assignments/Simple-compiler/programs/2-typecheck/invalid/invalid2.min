@@ -1,0 +1,6 @@
+# binary comparison with different types
+var x = 5;
+var y = "Hello";
+if (x == y) {
+    print(True);
+}

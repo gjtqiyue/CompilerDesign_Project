@@ -1,3 +1,0 @@
-# generate error on invalid identifier
-
-var (t): string = "fdfdd";

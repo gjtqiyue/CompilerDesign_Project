@@ -1,3 +1,0 @@
-# valid literal string with all possible characters
-var x : string = "";
-x = ":~#$%^&*-+/`<>=_|';:!@,.?{}[]() ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789"; 

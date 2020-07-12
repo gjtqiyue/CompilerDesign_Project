@@ -1,0 +1,4 @@
+# bool and bool addition
+var x : bool = True;
+var y : bool = False;
+print(x + y);

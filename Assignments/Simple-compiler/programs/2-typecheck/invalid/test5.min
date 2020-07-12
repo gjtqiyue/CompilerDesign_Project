@@ -1,0 +1,2 @@
+#invalid opeation of uminus on string type
+var s = -"string";

@@ -1,0 +1,11 @@
+#include <string.h>
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <libgen.h>
+#include "tree.h"
+#include "pretty.h"
+#include "weeder.h"
+#include "symbol.h"
+#include "type.h"
+#include "codegen.h"

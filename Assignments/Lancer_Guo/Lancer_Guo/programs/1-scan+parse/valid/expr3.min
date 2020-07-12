@@ -1,7 +1,0 @@
-# valid unary operator
-var x : int = 0;
-x = --3;
-
-# valid bang operation
-var b : bool = False;
-b = !!!True;

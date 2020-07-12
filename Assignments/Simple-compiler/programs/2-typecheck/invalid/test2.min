@@ -1,0 +1,3 @@
+#invalid  reassignment of int to bool type
+var c = 9;
+c = True;
