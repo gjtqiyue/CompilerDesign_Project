@@ -1,6 +1,6 @@
 # Comp520_CompilerDesign
 
-### project directory: https://github.com/gjtqiyue/CompilerDesign_Project/tree/master/Project/GoLite-compiler-project
+#### project directory: https://github.com/gjtqiyue/CompilerDesign_Project/tree/master/Project/GoLite-compiler-project
 
 We provide 3 scripts for convenience and two directories for organization:
 
