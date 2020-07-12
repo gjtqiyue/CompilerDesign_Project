@@ -15,13 +15,21 @@ src: Source code for your assignment
 build.sh: Builds your compiler using Make or similar. You should replace the commands here if necessary to build your compiler
 
 run.sh: Runs your compiler using two arguments (mode - $1 and input file - $2). You should replace the commands here if necessary to invoke your compiler
-  modes:
-    - scan
-    - tokens
-    - parse
-    - pretty
-    - symbol
-    - typecheck
-    - codegen
+  
+ modes:
+ 
+    - scan : Outputs OK if the input is lexically correct, or an appropriate error message
+    
+    - tokens : Outputs the token kinds, one per line, until the end of le. Tokens with associated data (literals, identiers, etc) should be printed with their respective information
+    
+    - parse : Outputs OK if the input is syntactically correct, or an appropriate error message
+    
+    - pretty : Outputs the pretty printed code
+    
+    - symbol : Outputs the symbol representation for the tree
+    
+    - typecheck : Outputs OK if the input is typechecked
+    
+    - codegen : Output generated GoLite code to the provided file destination
     
 test.sh: Automatically runs your compiler against test programs in the programs directory and checks the output
