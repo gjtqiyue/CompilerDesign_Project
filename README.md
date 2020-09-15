@@ -1,4 +1,5 @@
-# Comp520_CompilerDesign
+# Go_lite Compiler
+### Comp520_CompilerDesign
 
 #### project directory: https://github.com/gjtqiyue/CompilerDesign_Project/tree/master/Project/GoLite-compiler-project
 
